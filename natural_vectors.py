@@ -1,6 +1,8 @@
 import primefac
 import time
 import numpy as np
+from numba import int64
+from numba.experimental import jitclass # TODO: compile for fast aff booiii
 
 
 class NaturalVector():
@@ -24,7 +26,7 @@ class NaturalVector():
 
 
         self.vector_scalars = [(self.factors == unique_prime).sum() for unique_prime in self.unique_primes]
-
+    
     def unit_vector(self, vec):
         """
         scale vector to unit length
@@ -101,8 +103,8 @@ if __name__ == "__main__":
     """
     Example of use:
     """
-    natvec1 = NaturalVector(n=69)
-    natvec2 = NaturalVector(n=420)
+    natvec1 = NaturalVector(n=420)
+    natvec2 = NaturalVector(n=69)
 
 
     angle = natvec1.get_natural_angle(nat_vec=natvec2) * 180 / np.pi
